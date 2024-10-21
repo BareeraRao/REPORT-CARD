@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Report Card Generator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Student Report Card</h1>
+
+        <div class="input-group">
+            <label for="studentName">Student Name:</label>
+            <input type="text" id="studentName" placeholder="Enter student's name" required>
+        </div>
+
+        <div class="input-group">
+            <label for="className">Class:</label>
+            <input type="text" id="className" placeholder="Enter class" required>
+        </div>
+
+        <h2>Marks</h2>
+
+        <div class="input-group">
+            <label for="subject1">Subject 1:</label>
+            <input type="text" id="subject1" placeholder="Subject 1" required>
+            <input type="number" id="mark1" placeholder="Marks" required>
+        </div>
+
+        <div class="input-group">
+            <label for="subject2">Subject 2:</label>
+            <input type="text" id="subject2" placeholder="Subject 2" required>
+            <input type="number" id="mark2" placeholder="Marks" required>
+        </div>
+
+        <div class="input-group">
+            <label for="subject3">Subject 3:</label>
+            <input type="text" id="subject3" placeholder="Subject 3" required>
+            <input type="number" id="mark3" placeholder="Marks" required>
+        </div>
+
+        <button onclick="generateReport()">Generate Report</button>
+
+        <h2 id="result"></h2>
+    </div>
+
+    <script>
+        function generateReport() {
+            const name = document.getElementById('studentName').value;
+            const className = document.getElementById('className').value;
+            const subject1 = document.getElementById('subject1').value;
+            const subject2 = document.getElementById('subject2').value;
+            const subject3 = document.getElementById('subject3').value;
+            const mark1 = parseFloat(document.getElementById('mark1').value);
+            const mark2 = parseFloat(document.getElementById('mark2').value);
+            const mark3 = parseFloat(document.getElementById('mark3').value);
+
+            const totalMarks = mark1 + mark2 + mark3;
+            const average = (totalMarks / 3).toFixed(2);
+
+            const grade = average >= 75 ? 'A' : average >= 50 ? 'B' : 'C';
+
+            const resultText = `
+                Name: ${name} \n
+                Class: ${className} \n
+                Subject 1 (${subject1}): ${mark1} \n
+                Subject 2 (${subject2}): ${mark2} \n
+                Subject 3 (${subject3}): ${mark3} \n
+                Total Marks: ${totalMarks} \n
+                Average: ${average} \n
+                Grade: ${grade}
+            `;
+
+            document.getElementById('result').innerText = resultText;
+        }
+    </script>
+</body>
+</html>
